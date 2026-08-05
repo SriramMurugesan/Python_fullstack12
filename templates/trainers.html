@@ -14,24 +14,26 @@
         <h1>Trainers in NRIIT Learning Management</h1>
         <p>Learn Practice Get Placed</p>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="courses.html">Courses</a>
-            <a href="trainers.html">Trainers</a>
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
-            <a href="contact.html">Contact</a>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/courses">Courses</a>
+            <a href="/trainers">Trainers</a>
+            <a href="/register">Register</a>
+            <a href="/login">Login</a>
+            <a href="/contact">Contact</a>
         </nav>
     </header>
     <main>
         <section>
             <h2>Meet Our Trainers</h2>
             <article>
-                <img src="images/trainer1.jpg" alt="Python Trainer" width="180" class="trainer-image">
-                <h3>Mr. Sriram</h3>
-                <p>Python Full Stack Trainer</p>
-                <p>Experience: 4+ years</p>
+                <img id="trainerImg" src="{{ url_for('static', filename='images/trainer1.jpg') }}" alt="Trainer" width="180" class="trainer-image">
+                <h3 id="trainerName">Mr. Sriram</h3>
+                <p id="trainerRole">Python Full Stack Trainer</p>
+                <p id="trainerExp">Experience: 4+ years</p>
             </article>
+            <br>
+            <button id="nextTrainerBtn">Next Trainer</button>
         </section>
     </main>
     <footer>
