@@ -15,7 +15,11 @@ https://github.com/SriramMurugesan/Python_fullstack12
 
 https://meet.google.com/vfd-wqaa-huy
 
-
+python -m venv env 
+if env is not in your folder
+. env/bin/activate    
+pip install flask
+python3 app.py
 git add .
 git commit -m "eventlistners"
 git push
@@ -66,3 +70,59 @@ kill -9 12345
 500 Internal Server Error
 503 Service Unavailable
 
+
+# SQL Basics
+
+
+# SELECT
+Display all customers.
+Display only first_name and last_name from Customers.
+Display first_name, age, and country.
+
+# WHERE
+Find customers who are from the USA.
+Find customers whose age is 22.
+Find customers older than 25.
+Find orders where the amount is greater than 500.
+
+# AND / OR
+Find customers from the UK whose age is greater than 20.
+Find customers who are from USA or UAE.
+Find customers whose age is 22 or 28.
+
+# BETWEEN / IN
+Find customers whose age is between 22 and 30.
+Find customers whose country is USA or UK using IN.
+Find orders whose amount is between 300 and 1000.
+
+# LIKE
+Find customers whose first name starts with J.
+Find customers whose last name contains o.
+Find customers whose first name ends with t.
+
+# DISTINCT
+Display all unique countries.
+Display all unique order items.
+
+# ORDER BY
+Display customers sorted by age from youngest to oldest.
+Display orders sorted by amount from highest to lowest.
+
+# Aggregate Functions
+Find the total number of customers.
+Find the average age of customers.
+Find the highest order amount.
+Find the total amount of all orders.
+
+# GROUP BY
+Count the number of customers in each country.
+Count how many orders exist for each item.
+Find the total order amount for each item.
+
+# JOIN
+Display the customer's first name along with the item they ordered.
+Display the customer's first name and shipping status.
+Display customer name, item, order amount, and shipping status together using JOINs.
+
+
+g
