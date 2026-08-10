@@ -385,3 +385,48 @@ span#nextPopularCourseBtn:hover {
     transform: scale(1.1);
 }
 
+
+/* --- Added for removing inline CSS --- */
+.popular-courses-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.popular-course-nav-btn {
+    cursor: pointer;
+    font-size: 32px;
+    user-select: none;
+}
+
+.task-add-form {
+    margin-bottom: 20px;
+}
+
+.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.task-delete-form {
+    display: inline;
+}
+
+.task-delete-btn {
+    background-color: red;
+    color: white;
+    padding: 2px 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}

@@ -4,17 +4,13 @@ let registerForm = document.getElementById("registerForm");
 if (registerForm) {
     registerForm.addEventListener("submit", function (event) {
         event.preventDefault(); // Stop form from submitting the old way
-        
         let name = document.getElementById("name").value;
         let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
-        
+        let password = document.getElementById("password").value; 
         let dobInput = document.querySelector('input[name="dob"]');
         let dob = dobInput ? dobInput.value : '';
-        
         let genderInput = document.querySelector('input[name="gender"]:checked');
-        let gender = genderInput ? genderInput.value : '';
-        
+        let gender = genderInput ? genderInput.value : ''; 
         let courseSelect = document.querySelector('select[name="course"]');
         let course = courseSelect ? courseSelect.value : '';
         

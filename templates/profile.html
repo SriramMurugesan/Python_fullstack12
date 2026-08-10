@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+  <title>User Profile</title>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome, {{ user.name }}</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/courses">Courses</a>
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Your Profile Information (Read)</h2>
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Course:</strong> {{ user.course }}</p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Update Your Profile (Update)</h2>
+      <form action="/profile/update" method="POST">
+        <label>Update Name:</label><br>
+        <input type="text" name="name" value="{{ user.name }}" required><br><br>
+        
+        <label>Update Course:</label><br>
+        <select name="course" required>
+            <option value="Python FullStack" {% if user.course == 'Python FullStack' %}selected{% endif %}>Python FullStack</option>
+            <option value="Java FullStack" {% if user.course == 'Java FullStack' %}selected{% endif %}>Java FullStack</option>
+            <option value="Web Development" {% if user.course == 'Web Development' %}selected{% endif %}>Web Development</option>
+            <option value="Data Science" {% if user.course == 'Data Science' %}selected{% endif %}>Data Science</option>
+        </select><br><br>
+        
+        <button type="submit">Update Profile</button>
+      </form>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>My Tasks</h2>
+      
+      <!-- CREATE -->
+      <form action="/task/add" method="POST" class="task-add-form">
+        <input type="text" name="task_name" placeholder="Enter a new task..." required>
+        <button type="submit">Add Task</button>
+      </form>
+
+      <!-- READ & DELETE -->
+      <ul class="task-list">
+        {% for task in tasks %}
+        <li class="task-item">
+          <span>{{ task.task_name }}</span>
+          <form action="/task/delete/{{ task.id }}" method="POST" class="task-delete-form">
+            <button type="submit" class="task-delete-btn">Delete</button>
+          </form>
+        </li>
+        {% else %}
+        <li>No tasks found. Add one above!</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <hr>
+    <p>&copy; 2026 NRIIT Learning Management System</p>
+  </footer>
+</body>
+
+</html>
