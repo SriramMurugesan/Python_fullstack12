@@ -1,11 +1,35 @@
-
+import sqlite3
 # pyrefly: ignore [missing-import]
-from flask import Flask,render_template,jsonify,request
+from flask import Flask,render_template,jsonify,request,redirect,url_for
+
 
 app = Flask(__name__)
+app.secret_key="super_secret_key"
 
-# Simple in-memory database to store registered users
-users_db = {}
+def get_db_connection():
+    conn = sqlite3.connect("users.db")
+    conn.row_factory = sqlite3.Row
+    # return row as dictionary 
+    return conn
+ 
+# create database tables
+def init_db():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    # create users table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        password TEXT NOT NULL,
+        dob TEXT NOT NULL,
+        gender TEXT NOT NULL,
+        course TEXT NOT NULL
+    )
+    """)
+    conn.commit()
+    conn.close()
 
 @app.route('/')
 def home():
