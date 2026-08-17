@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
-    <title>Trainers page</title>
+    <title>Task Page</title>
 </head>
 
 <body>
     <header>
         Home <br>
-        <h1>Trainers in NRIIT Learning Management</h1>
+        <h1>NRIIT Learning Management</h1>
         <p>Learn Practice Get Placed</p>
         <nav>
             <a href="/">Home</a>
@@ -30,17 +30,21 @@
     </header>
     <main>
         <section>
-            <h2>Meet Our Trainers</h2>
-            <article>
-                <img id="trainerImg" src="{{ url_for('static', filename='images/trainer1.jpg') }}" alt="Trainer" width="180" class="trainer-image">
-                <h3 id="trainerName">Mr. Sriram</h3>
-                <p id="trainerRole">Python Full Stack Trainer</p>
-                <p id="trainerExp">Experience: 4+ years</p>
-            </article>
-            <br>
-            <button id="nextTrainerBtn">Next Trainer</button>
+            <p>Welcome {{session.get('user_name')}}</p>
+            <h2>Here are your tasks</h2>
+            <h4>Manage your tasks here</h4>          
         </section>
+        <section>
+            <h3>Add tasks</h3>
+            <form id="addTaskForm" action="/api/tasks" method="post">
+                <label for="taskTitle">Task Title:</label>
+                <input type="text" id="taskTitle" name="taskTitle" required>
+                <button type="submit">Add Task</button>
+            </form>
+        </section>
+            
     </main>
+
     <footer>
 
         <hr>
