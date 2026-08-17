@@ -385,3 +385,9 @@ span#nextPopularCourseBtn:hover {
     transform: scale(1.1);
 }
 
+/* --- Tasks Styling --- */
+.task-completed {
+    text-decoration: line-through;
+    color: gray;
+}
+

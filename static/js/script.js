@@ -200,3 +200,103 @@ if (btnPrevPopular) {
         updatePopularCourse();
     });
 }
+
+// --- Tasks CRUD Section ---
+document.addEventListener("DOMContentLoaded", function() {
+    const taskList = document.getElementById('taskList');
+    if (taskList) {
+        fetchTasks();
+    }
+});
+
+function fetchTasks() {
+    fetch('/api/tasks')
+        .then(response => response.json())
+        .then(tasks => {
+            const taskList = document.getElementById('taskList');
+            if (!taskList) return;
+            taskList.innerHTML = '';
+            
+            if (tasks.length === 0) {
+                taskList.innerHTML = '<li>No tasks yet! Add one above.</li>';
+                return;
+            }
+
+            tasks.forEach(task => {
+                const li = document.createElement('li');
+                
+                const textClass = task.status === 'Completed' ? 'class="task-completed"' : '';
+                
+                li.innerHTML = `
+                    <span ${textClass}>${task.title}</span> - 
+                    ${task.status !== 'Completed' ? 
+                        `<button onclick="updateTaskStatus(${task.id}, 'Completed')">Complete</button>` 
+                        : 
+                        `<button onclick="updateTaskStatus(${task.id}, 'Pending')">Undo</button>`
+                    }
+                    <button onclick="deleteTask(${task.id})">Delete</button>
+                `;
+                taskList.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Error fetching tasks:', error));
+}
+
+let addTaskForm = document.getElementById('addTaskForm');
+if (addTaskForm) {
+    addTaskForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const titleInput = document.getElementById('taskTitle');
+        const title = titleInput.value;
+
+        fetch('/api/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title: title })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                titleInput.value = '';
+                fetchTasks();
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => console.error('Error adding task:', error));
+    });
+}
+
+function updateTaskStatus(taskId, newStatus) {
+    fetch('/api/tasks/' + taskId, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            fetchTasks();
+        }
+    })
+    .catch(error => console.error('Error updating task:', error));
+}
+
+function deleteTask(taskId) {
+    if (confirm("Are you sure you want to delete this task?")) {
+        fetch('/api/tasks/' + taskId, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                fetchTasks();
+            }
+        })
+        .catch(error => console.error('Error deleting task:', error));
+    }
+}
