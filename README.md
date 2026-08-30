@@ -243,6 +243,8 @@ session - for managing user sessions
 jsonify - return message in json format
 redirect - for redirecting to another route
 url_for - for creating urls for the routes
+werkzeug.security - for password encryption(generate_password_hash,check_password_hash)
+gunicorn - WSGI HTTP Server(production) for deployment
 
 # database
 sqlite3 - relational database management system
